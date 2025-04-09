@@ -1,25 +1,35 @@
+// src/pages/LoginPage.jsx
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const LoginPage = () => {
+function LoginPage() {
+  const location = useLocation();
   const navigate = useNavigate();
+
+  const { ip, username, password, deviceType } = location.state || {};
 
   const handleLogin = (e) => {
     e.preventDefault();
-    navigate("/details");
+    navigate("/device-options", {
+      state: {
+        deviceType,
+      },
+    });
   };
 
   return (
-    <div>
-      <h2>Login Page</h2>
+    <div style={{ textAlign: "center", marginTop: "100px" }}>
+      <h2 style={{ color: "blue" }}>Login Page</h2>
       <form onSubmit={handleLogin}>
-        <input type="text" placeholder="IP Address" required /><br />
-        <input type="text" placeholder="Username" required /><br />
-        <input type="password" placeholder="Password" required /><br />
-        <button type="submit">Login</button>
+        <input placeholder="IP Address" value={ip} readOnly /><br /><br />
+        <input placeholder="Username" value={username} readOnly /><br /><br />
+        <input type="password" placeholder="Password" value={password} readOnly /><br /><br />
+        <button type="submit" style={{ backgroundColor: "#00bfff", padding: "10px 20px" }}>
+          Login
+        </button>
       </form>
     </div>
   );
-};
+}
 
 export default LoginPage;
