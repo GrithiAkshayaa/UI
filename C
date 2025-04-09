@@ -1,0 +1,7 @@
+import React from "react";
+
+function ConfigurationManagement() {
+  return <h2>Configuration Management Page</h2>;
+}
+
+export default ConfigurationManagement;
