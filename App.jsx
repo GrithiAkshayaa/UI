@@ -1,3 +1,4 @@
+import React from "react";
 import { Routes, Route } from "react-router-dom";
 import AddDevice from "./pages/AddDevice";
 import DeviceOptions from "./pages/DeviceOptions";
