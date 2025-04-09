@@ -1,0 +1,25 @@
+import { useLocation, useNavigate } from 'react-router-dom'
+
+function DeviceDetailsPage() {
+  const { state } = useLocation()
+  const navigate = useNavigate()
+
+  const equipment = [
+    { id: 1, name: 'EQ1', status: 'Active' },
+    { id: 2, name: 'EQ2', status: 'Inactive' }
+  ]
+
+  return (
+    <div>
+      <h2>{state?.deviceName} Equipment</h2>
+      <ul>
+        {equipment.map(eq => (
+          <li key={eq.id}>{eq.name} - {eq.status}</li>
+        ))}
+      </ul>
+      <button onClick={() => navigate('/logout')}>Logout</button>
+    </div>
+  )
+}
+
+export default DeviceDetailsPage
