@@ -1,17 +1,17 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const DeviceOptions = () => {
-  const location = useLocation();
-  const deviceType = location.state?.deviceType || "Device";
+  const { deviceType } = useParams();
+  const navigate = useNavigate();
 
   return (
-    <div className="device-options-container">
+    <div className="container">
       <h2>Device: {deviceType.toUpperCase()}</h2>
-      <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginTop: "20px" }}>
-        <button>Configuration Management</button>
-        <button>Performance Management</button>
-        <button>Fault Management</button>
+      <div style={{ display: "flex", flexDirection: "column", gap: "16px", marginTop: "20px" }}>
+        <button onClick={() => navigate("/configuration")}>Configuration Management</button>
+        <button onClick={() => navigate("/performance")}>Performance Management</button>
+        <button onClick={() => navigate("/fault")}>Fault Management</button>
       </div>
     </div>
   );
