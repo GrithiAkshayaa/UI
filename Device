@@ -1,30 +1,25 @@
+// src/pages/DeviceOptions.jsx
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
-const DeviceDetailsPage = () => {
-  const navigate = useNavigate();
+function DeviceOptions() {
+  const location = useLocation();
+  const deviceType = location.state?.deviceType || "Device";
 
   return (
-    <div>
-      <h2>Device Details</h2>
-      <table border="1">
-        <thead>
-          <tr>
-            <th>Device Name</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>SampleDevice</td>
-            <td>Online</td>
-          </tr>
-        </tbody>
-      </table>
-      <br />
-      <button onClick={() => navigate("/")}>Logout</button>
+    <div style={{ textAlign: "center", marginTop: "100px" }}>
+      <h2 style={{ color: "blue" }}>{deviceType} Options</h2>
+      <button style={{ backgroundColor: "#00bfff", padding: "10px 20px", margin: "10px" }}>
+        Configuration Management
+      </button><br />
+      <button style={{ backgroundColor: "#00bfff", padding: "10px 20px", margin: "10px" }}>
+        Performance Management
+      </button><br />
+      <button style={{ backgroundColor: "#00bfff", padding: "10px 20px", margin: "10px" }}>
+        Fault Management
+      </button>
     </div>
   );
-};
+}
 
-export default DeviceDetailsPage;
+export default DeviceOptions;
