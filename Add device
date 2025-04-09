@@ -2,29 +2,61 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const AddDevice = () => {
+  const [ipAddress, setIpAddress] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [deviceType, setDeviceType] = useState("Amplifier");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate("/device", { state: { deviceName: deviceType } });
+    alert("Device added successfully!");
+    navigate(`/device/${deviceType}`);
   };
 
   return (
-    <div className="add-device-container">
+    <div className="container">
       <h2>Add Device</h2>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="deviceType">Choose a device:</label>
-        <select
-          id="deviceType"
-          value={deviceType}
-          onChange={(e) => setDeviceType(e.target.value)}
-        >
-          <option value="Amplifier">Amplifier</option>
-          <option value="Transponder">Transponder</option>
-          <option value="Mux">Mux</option>
-        </select>
-        <br /><br />
+        <div>
+          <label>IP Address:</label>
+          <input
+            type="text"
+            value={ipAddress}
+            onChange={(e) => setIpAddress(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label>Username:</label>
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label>Password:</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label>Device Type:</label>
+          <select
+            value={deviceType}
+            onChange={(e) => setDeviceType(e.target.value)}
+          >
+            <option value="Amplifier">Amplifier</option>
+            <option value="Transponder">Transponder</option>
+            <option value="Mux">Mux</option>
+          </select>
+        </div>
+        <br />
         <button type="submit">Submit</button>
       </form>
     </div>
