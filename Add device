@@ -1,62 +1,54 @@
-// src/pages/AddDevice.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function AddDevice() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [ip, setIP] = useState("");
+const AddDevice = () => {
+  const [deviceName, setDeviceName] = useState("");
   const [deviceType, setDeviceType] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate("/login", {
-      state: {
-        ip,
-        username,
-        password,
-        deviceType,
-      },
-    });
+    if (deviceName && deviceType) {
+      navigate(`/device-options/${deviceName}`);
+    } else {
+      alert("Please fill in all fields.");
+    }
   };
 
   return (
-    <div style={{ textAlign: "center", marginTop: "100px" }}>
-      <h2 style={{ color: "blue" }}>Add Device</h2>
+    <div style={{ padding: "20px" }}>
+      <h2>Add Device</h2>
       <form onSubmit={handleSubmit}>
-        <input
-          placeholder="IP Address"
-          value={ip}
-          onChange={(e) => setIP(e.target.value)}
-        /><br /><br />
-        <input
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        /><br /><br />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        /><br /><br />
-        <select
-          value={deviceType}
-          onChange={(e) => setDeviceType(e.target.value)}
-          style={{ padding: "8px", width: "200px" }}
-        >
-          <option value="">Select Device Type</option>
-          <option value="AMPLIFIER">AMPLIFIER</option>
-          <option value="TRANSPONDER">TRANSPONDER</option>
-          <option value="MUX">MUX</option>
-        </select><br /><br />
-        <button type="submit" style={{ backgroundColor: "#00bfff", padding: "10px 20px" }}>
+        <div>
+          <label>Device Name: </label>
+          <input
+            type="text"
+            value={deviceName}
+            onChange={(e) => setDeviceName(e.target.value)}
+            required
+          />
+        </div>
+
+        <div>
+          <label>Device Type: </label>
+          <select
+            value={deviceType}
+            onChange={(e) => setDeviceType(e.target.value)}
+            required
+          >
+            <option value="">Select</option>
+            <option value="AMPLIFIER">AMPLIFIER</option>
+            <option value="TRANSPONDER">TRANSPONDER</option>
+            <option value="MUX">MUX</option>
+          </select>
+        </div>
+
+        <button type="submit" style={{ marginTop: "10px" }}>
           Submit
         </button>
       </form>
     </div>
   );
-}
+};
 
 export default AddDevice;
