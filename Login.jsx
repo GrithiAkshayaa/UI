@@ -1,22 +1,25 @@
-import { useLocation, useNavigate } from 'react-router-dom'
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
-function LoginPage() {
-  const { state } = useLocation()
-  const navigate = useNavigate()
+const LoginPage = () => {
+  const navigate = useNavigate();
 
-  const handleLogin = () => {
-    navigate('/device-details', { state: { deviceName: 'Amplifier' } })
-  }
+  const handleLogin = (e) => {
+    e.preventDefault();
+    navigate("/details");
+  };
 
   return (
     <div>
       <h2>Login Page</h2>
-      <p>IP Address: {state?.ip}</p>
-      <p>Username: {state?.username}</p>
-      <p>Password: {state?.password}</p>
-      <button onClick={handleLogin}>Login</button>
+      <form onSubmit={handleLogin}>
+        <input type="text" placeholder="IP Address" required /><br />
+        <input type="text" placeholder="Username" required /><br />
+        <input type="password" placeholder="Password" required /><br />
+        <button type="submit">Login</button>
+      </form>
     </div>
-  )
-}
+  );
+};
 
-export default LoginPage
+export default LoginPage;
