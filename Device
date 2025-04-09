@@ -3,15 +3,15 @@ import { useLocation } from "react-router-dom";
 
 const DeviceOptions = () => {
   const location = useLocation();
-  const deviceName = location.state?.deviceName || "Device";
+  const deviceType = location.state?.deviceType || "Device";
 
   return (
     <div className="device-options-container">
-      <h2>Device: {deviceName.toUpperCase()}</h2>
-      <div className="button-group">
-        <button className="btn">Configuration Management</button>
-        <button className="btn">Performance Management</button>
-        <button className="btn">Fault Management</button>
+      <h2>Device: {deviceType.toUpperCase()}</h2>
+      <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginTop: "20px" }}>
+        <button>Configuration Management</button>
+        <button>Performance Management</button>
+        <button>Fault Management</button>
       </div>
     </div>
   );
