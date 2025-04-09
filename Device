@@ -1,25 +1,30 @@
-import { useLocation, useNavigate } from 'react-router-dom'
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
-function DeviceDetailsPage() {
-  const { state } = useLocation()
-  const navigate = useNavigate()
-
-  const equipment = [
-    { id: 1, name: 'EQ1', status: 'Active' },
-    { id: 2, name: 'EQ2', status: 'Inactive' }
-  ]
+const DeviceDetailsPage = () => {
+  const navigate = useNavigate();
 
   return (
     <div>
-      <h2>{state?.deviceName} Equipment</h2>
-      <ul>
-        {equipment.map(eq => (
-          <li key={eq.id}>{eq.name} - {eq.status}</li>
-        ))}
-      </ul>
-      <button onClick={() => navigate('/logout')}>Logout</button>
+      <h2>Device Details</h2>
+      <table border="1">
+        <thead>
+          <tr>
+            <th>Device Name</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>SampleDevice</td>
+            <td>Online</td>
+          </tr>
+        </tbody>
+      </table>
+      <br />
+      <button onClick={() => navigate("/")}>Logout</button>
     </div>
-  )
-}
+  );
+};
 
-export default DeviceDetailsPage
+export default DeviceDetailsPage;
