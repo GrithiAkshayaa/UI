@@ -1,35 +1,27 @@
-// src/pages/LoginPage.jsx
-import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function LoginPage() {
-  const location = useLocation();
+function Login() {
+  const [form, setForm] = useState({ ip: "", username: "", password: "" });
   const navigate = useNavigate();
-
-  const { ip, username, password, deviceType } = location.state || {};
 
   const handleLogin = (e) => {
     e.preventDefault();
-    navigate("/device-options", {
-      state: {
-        deviceType,
-      },
-    });
+    alert("Login successful");
+    navigate(`/device-options/${form.ip}`);
   };
 
   return (
-    <div style={{ textAlign: "center", marginTop: "100px" }}>
-      <h2 style={{ color: "blue" }}>Login Page</h2>
+    <div className="container">
+      <h2>Login Page</h2>
       <form onSubmit={handleLogin}>
-        <input placeholder="IP Address" value={ip} readOnly /><br /><br />
-        <input placeholder="Username" value={username} readOnly /><br /><br />
-        <input type="password" placeholder="Password" value={password} readOnly /><br /><br />
-        <button type="submit" style={{ backgroundColor: "#00bfff", padding: "10px 20px" }}>
-          Login
-        </button>
+        <input placeholder="IP Address" required onChange={(e) => setForm({ ...form, ip: e.target.value })} />
+        <input placeholder="Username" required onChange={(e) => setForm({ ...form, username: e.target.value })} />
+        <input type="password" placeholder="Password" required onChange={(e) => setForm({ ...form, password: e.target.value })} />
+        <button type="submit">Login</button>
       </form>
     </div>
   );
 }
 
-export default LoginPage;
+export default Login;
