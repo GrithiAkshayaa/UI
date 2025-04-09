@@ -1,27 +1,26 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
-function AddDevicePage() {
-  const [ip, setIp] = useState('')
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [deviceType, setDeviceType] = useState('')
-  const navigate = useNavigate()
+const AddDevicePage = () => {
+  const navigate = useNavigate();
 
-  const handleSubmit = () => {
-    navigate('/login', { state: { ip, username, password, deviceType } })
-  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate("/login");
+  };
 
   return (
     <div>
       <h2>Add Device</h2>
-      <input placeholder="IP Address" onChange={e => setIp(e.target.value)} />
-      <input placeholder="Username" onChange={e => setUsername(e.target.value)} />
-      <input type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
-      <input placeholder="Device Type" onChange={e => setDeviceType(e.target.value)} />
-      <button onClick={handleSubmit}>Submit</button>
+      <form onSubmit={handleSubmit}>
+        <input type="text" placeholder="IP Address" required /><br />
+        <input type="text" placeholder="Username" required /><br />
+        <input type="password" placeholder="Password" required /><br />
+        <input type="text" placeholder="Device Type" required /><br />
+        <button type="submit">Add Device</button>
+      </form>
     </div>
-  )
-}
+  );
+};
 
-export default AddDevicePage
+export default AddDevicePage;
