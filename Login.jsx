@@ -1,48 +1,22 @@
-import React, { useState } from 'react';
-import './Login.css';
+import { useLocation, useNavigate } from 'react-router-dom'
 
-function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+function LoginPage() {
+  const { state } = useLocation()
+  const navigate = useNavigate()
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Email:", email, "Password:", password);
-  };
+  const handleLogin = () => {
+    navigate('/device-details', { state: { deviceName: 'Amplifier' } })
+  }
 
   return (
-    <div className="login-page">
-      <form className="login-box" onSubmit={handleSubmit}>
-        <h2>Login</h2>
-
-        <div className="input-group">
-          <input
-            type="email"
-            placeholder="Email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <span className="icon">✉️</span>
-        </div>
-
-        <div className="input-group">
-          <input
-            type="password"
-            placeholder="Password"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <span className="icon">🔑</span>
-        </div>
-
-        <p className="forgot">Forgot Password ?</p>
-
-        <button type="submit">Login</button>
-      </form>
+    <div>
+      <h2>Login Page</h2>
+      <p>IP Address: {state?.ip}</p>
+      <p>Username: {state?.username}</p>
+      <p>Password: {state?.password}</p>
+      <button onClick={handleLogin}>Login</button>
     </div>
-  );
+  )
 }
 
-export default Login;
+export default LoginPage
