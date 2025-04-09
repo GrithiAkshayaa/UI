@@ -1,15 +1,18 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
-const DeviceOptions = () => {
-  const { deviceName } = useParams();
+function DeviceOptions() {
+  const { deviceType } = useParams();
+  const navigate = useNavigate();
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Device Options for: {deviceName}</h2>
-      {/* You can add device-specific options below */}
+    <div className="container">
+      <h2>Device: {deviceType}</h2>
+      <button onClick={() => navigate("/configuration")}>Configuration Management</button>
+      <button onClick={() => navigate("/performance")}>Performance Management</button>
+      <button onClick={() => navigate("/fault")}>Fault Management</button>
     </div>
   );
-};
+}
 
 export default DeviceOptions;
