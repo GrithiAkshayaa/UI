@@ -1,25 +1,15 @@
-// src/pages/DeviceOptions.jsx
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-function DeviceOptions() {
-  const location = useLocation();
-  const deviceType = location.state?.deviceType || "Device";
+const DeviceOptions = () => {
+  const { deviceName } = useParams();
 
   return (
-    <div style={{ textAlign: "center", marginTop: "100px" }}>
-      <h2 style={{ color: "blue" }}>{deviceType} Options</h2>
-      <button style={{ backgroundColor: "#00bfff", padding: "10px 20px", margin: "10px" }}>
-        Configuration Management
-      </button><br />
-      <button style={{ backgroundColor: "#00bfff", padding: "10px 20px", margin: "10px" }}>
-        Performance Management
-      </button><br />
-      <button style={{ backgroundColor: "#00bfff", padding: "10px 20px", margin: "10px" }}>
-        Fault Management
-      </button>
+    <div style={{ padding: "20px" }}>
+      <h2>Device Options for: {deviceName}</h2>
+      {/* You can add device-specific options below */}
     </div>
   );
-}
+};
 
 export default DeviceOptions;
