@@ -1,0 +1,14 @@
+import { useNavigate } from 'react-router-dom'
+
+function LogoutPage() {
+  const navigate = useNavigate()
+
+  return (
+    <div>
+      <h2>You have been logged out.</h2>
+      <button onClick={() => navigate('/')}>Back to Home</button>
+    </div>
+  )
+}
+
+export default LogoutPage
