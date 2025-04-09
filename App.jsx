@@ -1,12 +1,17 @@
-import React from 'react';
-import './App.css';
-import Login from './Login.jsx';
+// src/App.jsx
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import AddDevice from "./pages/AddDevice";
+import LoginPage from "./pages/LoginPage";
+import DeviceOptions from "./pages/DeviceOptions";
 
 function App() {
   return (
-    <div className="App">
-      <Login />
-    </div>
+    <Routes>
+      <Route path="/" element={<AddDevice />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/device-options" element={<DeviceOptions />} />
+    </Routes>
   );
 }
 
