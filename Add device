@@ -1,26 +1,62 @@
-import React from "react";
+// src/pages/AddDevice.jsx
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const AddDevicePage = () => {
+function AddDevice() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [ip, setIP] = useState("");
+  const [deviceType, setDeviceType] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate("/login");
+    navigate("/login", {
+      state: {
+        ip,
+        username,
+        password,
+        deviceType,
+      },
+    });
   };
 
   return (
-    <div>
-      <h2>Add Device</h2>
+    <div style={{ textAlign: "center", marginTop: "100px" }}>
+      <h2 style={{ color: "blue" }}>Add Device</h2>
       <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="IP Address" required /><br />
-        <input type="text" placeholder="Username" required /><br />
-        <input type="password" placeholder="Password" required /><br />
-        <input type="text" placeholder="Device Type" required /><br />
-        <button type="submit">Add Device</button>
+        <input
+          placeholder="IP Address"
+          value={ip}
+          onChange={(e) => setIP(e.target.value)}
+        /><br /><br />
+        <input
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        /><br /><br />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        /><br /><br />
+        <select
+          value={deviceType}
+          onChange={(e) => setDeviceType(e.target.value)}
+          style={{ padding: "8px", width: "200px" }}
+        >
+          <option value="">Select Device Type</option>
+          <option value="AMPLIFIER">AMPLIFIER</option>
+          <option value="TRANSPONDER">TRANSPONDER</option>
+          <option value="MUX">MUX</option>
+        </select><br /><br />
+        <button type="submit" style={{ backgroundColor: "#00bfff", padding: "10px 20px" }}>
+          Submit
+        </button>
       </form>
     </div>
   );
-};
+}
 
-export default AddDevicePage;
+export default AddDevice;
